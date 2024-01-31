@@ -14,10 +14,7 @@ class NutritionDetailsApi
             "title": "Recipe",
             "ingr": @ingredients
         }.to_json
-        puts "Request Body: #{request_body}"
-        puts "App ID: #{ENV['NUTRITION_APP_ID']}"
-        puts "App Key: #{ENV['NUTRITION_APP_KEY']}"
-        puts "Request URL: #{self.class.base_uri}"
+    
         response = self.class.post("#{self.class.base_uri}?app_id=#{ENV['NUTRITION_APP_ID']}&app_key=#{ENV['NUTRITION_APP_KEY']}", {
             
             body: request_body,
