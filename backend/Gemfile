@@ -49,3 +49,5 @@ end
 gem 'httparty'
 gem 'jwt', '~> 2.2', '>= 2.2.3'
 gem 'factory_bot_rails'
+gem 'json'
+gem 'dotenv-rails'
