@@ -11,5 +11,8 @@ Rails.application.routes.draw do
   namespace :api do
     post 'login', to: 'sessions#create'
     post 'signup', to: 'users#create'
+    post 'nutritiondetails', to: 'nutrition_details#nutrition'
   end
+
+ 
 end
