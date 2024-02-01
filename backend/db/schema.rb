@@ -15,8 +15,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_31_184420) do
   enable_extension "plpgsql"
 
   create_table "recipes", force: :cascade do |t|
-    t.string "name"
-    t.text "ingredients", default: [], array: true
+    t.string "label"
+    t.text "ingredientsLines", default: [], array: true
+    t.text "images", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
