@@ -12,5 +12,8 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     post 'signup', to: 'users#create'
     get 'recipe', to: 'recipe_search#recipesearch'
+    post 'nutritiondetails', to: 'nutrition_details#nutrition'
   end
+
+ 
 end
