@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Homepage from "./pages/Homepage";
+import Journal from "./pages/Journal";
 
 function App() {
   // const [currentPage, setCurrentPage] = useState("homepage");
@@ -16,6 +17,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Homepage />} />
+            <Route path="/journal" element={<Journal />} />
           </Routes>
         </BrowserRouter>
       </div>
