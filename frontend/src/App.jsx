@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Homepage from "./pages/homepage";
+import Homepage from "./pages/Homepage";
 
 function App() {
   // const [currentPage, setCurrentPage] = useState("homepage");
