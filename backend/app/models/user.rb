@@ -4,4 +4,6 @@ class User < ApplicationRecord
   validates :username, :email, :first_name, :last_name, presence: true
   validates :email, :username, uniqueness: true
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :password, length: { minimum: 6 }
+  validates :password, confirmation: true
 end
