@@ -57,12 +57,11 @@ function AppContent() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/" element={<Homepage />} />
-            <Route path="/journal" element={<Journal />} />
-            {/* <Route
-              path="/"
-              element={<ProtectedRoute component={<Homepage />} />}
-            /> */}
+            {/* <Route path="/" element={<Homepage />} /> */}
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/journal" element={<Journal />} />
+            </Route>
           </Routes>
         </div>
       </div>
