@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_220210) do
   create_table "recipes", force: :cascade do |t|
     t.string "label"
     t.text "ingredientsLines", default: [], array: true
-    t.text "images", default: [], array: true
+    t.string "uri"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
