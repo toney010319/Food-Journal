@@ -32,7 +32,7 @@ module Api
     
         private
         def recipe_params
-            params.require(:recipe).permit(:label, :ingredientsLines,:images)
+            params.require(:recipe).permit(:label, :ingredientsLines,:uri)
         end
     end
 end
