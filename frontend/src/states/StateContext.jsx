@@ -1,10 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 
 const StateContext = createContext();
-const AuthContext = createContext();
 
 export const useStateContext = () => useContext(StateContext);
-export const useAuth = () => useContext(AuthContext);
 
 export const StateProvider = ({ children }) => {
   const [showNotice, setShowNotice] = useState(false);
@@ -19,18 +17,16 @@ export const StateProvider = ({ children }) => {
   );
 };
 
+const AuthContext = createContext();
+export const useAuth = () => useContext(AuthContext);
+
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [token, setToken] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem("token") !== null
+  );
 
   const login = () => setIsLoggedIn(true);
   const logout = () => setIsLoggedIn(false);
-
-  useEffect(() => {
-    const token = sessionStorage.getItem("token");
-    // console.log(token);
-    if (token !== "") setIsLoggedIn(true);
-  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>

@@ -27,7 +27,7 @@ const Homepage = () => {
       sessionStorage.clear();
       setShowNotice(true);
       setNotice(response.data.message);
-      //   logout();
+      logout();
       router("/login");
     } catch (error) {
       console.error(error);
