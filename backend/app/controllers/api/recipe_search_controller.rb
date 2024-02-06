@@ -35,7 +35,12 @@ module Api
                 filtered_data = {
                     ingredientLines: recipe_data['ingredientLines'],
                     label: recipe_data['label'],
-                    image: recipe_data['image']
+                    image: recipe_data['image'],
+                    healthLabels: recipe_data['healthLabels'],
+                    dietLabels: recipe_data['dietLabels'],
+                    digest: recipe_data['digest'],
+                    yield: recipe_data['yield'],
+                    totalNutrients: recipe_data['totalNutrients']
                                 }
                  render json: filtered_data
             end

@@ -47,7 +47,7 @@ class RecipeSearchApi
       uri: @uri,
       app_id: '6db53d7f',
       app_key: 'd3478e085a126d32037e0437a6897813',
-      field: ["label","ingredientLines","image"],
+      field: ["label","ingredientLines","image","healthLabels","dietLabels","digest","yield","totalNutrients"],
        
     }
     response = self.class.get("#{self.class.base_uri}/by-uri?", query: request_params)
