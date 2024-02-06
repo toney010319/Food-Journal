@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     post 'login', to: 'sessions#create'
     post 'logout', to: 'sessions#destroy'
     post 'signup', to: 'users#create'
-    get 'recipebyuri', to: 'recipe_search#recipesearchbyuri'
+    get 'recipebyuri', to: 'recipe_search#recipeSearchByUri'
     post 'nutritiondetails', to: 'nutrition_details#nutrition'
     resources :users do
       resources :recipe

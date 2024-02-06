@@ -18,7 +18,7 @@ module Api
             end
         end
 
-        def recipesearchbyuri
+        def recipeSearchByUri
             uri = params[:uri]
             if uri.blank?
                 render json: { error: 'URI is required' }, status: :bad_request
