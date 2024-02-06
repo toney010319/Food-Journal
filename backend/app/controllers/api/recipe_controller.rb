@@ -1,14 +1,14 @@
 module Api
     class RecipeController < ApplicationController
         def index
-            recipes = Recipe.all
+            user = User.find(params[:user_id])
+            recipes = user.recipes
             render json: recipes
-        end
-
-   
+          end
 
         def create
             recipe = Recipe.new(recipe_params)
+            user = User.find(params[:user_id])
             if recipe.save
                 render json: recipe
             else
@@ -18,6 +18,7 @@ module Api
 
         def destroy
             recipe = Recipe.find(params[:id])
+            user = User.find(params[:user_id])
             if recipe.destroy
                 render json: recipe
             else
@@ -25,14 +26,13 @@ module Api
             end
         end
 
-        def show
-        recipe = Recipe.find(params[:id])
-        render json: recipe
-        end
+        
+      
     
         private
         def recipe_params
-            params.require(:recipe).permit(:label, :ingredientsLines,:uri)
+            params.permit(:uri)
         end
     end
 end
+ 
