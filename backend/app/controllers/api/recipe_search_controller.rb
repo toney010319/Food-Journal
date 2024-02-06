@@ -1,6 +1,6 @@
 module Api
     class RecipeSearchController < ApplicationController
-        def recipesearch
+        def recipe_search
             query = params[:query]
 
             if query.blank?
@@ -18,7 +18,7 @@ module Api
             end
         end
 
-        def recipeSearchByUri
+        def recipe_search_by_uri
             uri = params[:uri]
             if uri.blank?
                 render json: { error: 'URI is required' }, status: :bad_request
