@@ -1,23 +1,24 @@
 import { useEffect, useState } from "react";
 import { getSaveRecipes } from "../lib/api"
 import Loading from "./Loading";
+import CardRecipe from "./CardRecipe";
 
 
 const Addmeal = ({ onClose }) => {
     const [recipes, setRecipes] = useState([])
-
+    const user_id = JSON.parse(sessionStorage.getItem("user")).id
 
     const fetchSaveRecipes = async () => {
-        let saveRecipes = await getSaveRecipes();
-        console.log(saveRecipes)
+        let saveRecipes = await getSaveRecipes(user_id);
+
         setRecipes(saveRecipes)
 
     }
     useEffect(() => {
         fetchSaveRecipes();
     }, []);
-    console.log(recipes)
-    return (
+    console.log("recipes", recipes)
+    return (<>
         <div className="bg-background relative">
             <button
                 onClick={onClose}
@@ -35,34 +36,26 @@ const Addmeal = ({ onClose }) => {
 
                     recipes.map((recipe) => {
                         return (
-                            <div key={recipe.id}>
-                                <div className=" pt-2 text-xl  text-accent   w-full">
-                                    <img
-                                        src={recipe.images[0]}
-                                        width="100"
-                                        alt="image"
-                                    />
-                                </div>
-                                <p className=" pt-2 text-xl  text-accent font-extrabold w-full">{recipe.label}</p>
-                                <div className="flex w-full flex-row justify-center">
-                                    <ul className="  pl-5">
-                                        {recipe.ingredientsLines.map((ingredient, index) => (
-                                            <li key={index}>{ingredient}</li>
-                                        ))}
-                                    </ul>
-
-                                </div>
-
-                            </div>
-
-                        )
+                            <CardRecipe
+                                key={recipe.id}
+                                label={recipe?.label}
+                                image={recipe.image}
+                                ingredients={[
+                                    recipe?.ingredientLines.map((ingredient, index) => (
+                                        <li key={index} className="text-left">{ingredient}</li>
+                                    ))
+                                ]}
+                            />
+                        );
                     })
+
                 ) : (
                     <Loading />
                 )
                 }
             </div>
         </div>
+    </>
     )
 }
 
