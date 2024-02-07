@@ -1,30 +1,10 @@
-import { useState } from "react";
-import Addmeal from "../components/Addmeal";
-import Modal from "../Modal";
-import { createPortal } from 'react-dom';
-
+// import { useState } from "react";
+// import Addmeal from "../components/Addmeal";
+// import Modal from "../Modal";
+// import { createPortal } from 'react-dom';
+import { Link } from "react-router-dom";
 const Journal = () => {
-    const [modalContent, setModalContent] = useState(null);
-    const [showModal, setShowModal] = useState(false);
-    const handleAddMeal = () => {
-        setShowModal(true);
-        setModalContent("addmeal");
-    }
-    const renderModalContent = () => {
-        switch (modalContent) {
-            case "addmeal":
-                return (
-                    <Addmeal onClose={() => setShowModal(false)} />
-                );
-            // case "viewmeal":
-            // return (
-            //     <Viewmeal onClose={() => setShowModal(false)} />
-            // );
 
-            default:
-                return null;
-        }
-    };
     return (
         <>
             <div className="border-2 border-black">
@@ -34,13 +14,11 @@ const Journal = () => {
                     <div >Meal 2</div>
                     <div >Meal 3</div>
                 </div>
-                <button
+                <Link to="/addmeal"
                     className="cursor-pointer text-white px-2 py-1 bg-gray-700 rounded-md hover:bg-gray-950 mb-2 ml-3"
-                    onClick={() => handleAddMeal()}
-                >Add meal</button>
+
+                >Add meal</Link>
             </div>
-            {showModal &&
-                createPortal(<Modal>{renderModalContent()}</Modal>, document.body)}
         </>
     )
 }
