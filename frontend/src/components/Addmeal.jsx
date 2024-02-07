@@ -2,9 +2,14 @@ import { useEffect, useState } from "react";
 import { getSaveRecipes } from "../lib/api"
 import Loading from "./Loading";
 import CardRecipe from "./CardRecipe";
+import { Button } from 'flowbite-react';
+import Ingredients from "./Ingredients";
+import { createPortal } from "react-dom";
+import Modal from "./Modal";
 
 const Addmeal = () => {
     const [recipes, setRecipes] = useState([])
+    const [openIngredients, setOpenIngredients] = useState(false)
     const user_id = JSON.parse(sessionStorage.getItem("user")).id
     const fetchSaveRecipes = async () => {
         let saveRecipes = await getSaveRecipes(user_id);
@@ -23,6 +28,7 @@ const Addmeal = () => {
                     recipes.map((recipe) => {
                         return (
                             <>
+
                                 <div className="text-align items-align flex flex-col   text-gray-900 dark:text-white">
                                     <CardRecipe
                                         key={recipe.id}
@@ -44,23 +50,40 @@ const Addmeal = () => {
                                             ))
                                         ]}
                                     />
-                                    <div className="bg-[#f1f1f1e3] rounded-b-lg border-b-2 border-x-2 p-5   flex flex-row justify-between ">
-                                        <div className="pt-5">
-                                            <p>{recipe.yield} Servings</p>
-                                            <p ><span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Math.floor(recipe.totalNutrients.ENERC_KCAL.quantity / recipe.yield)}</span> kcal</p>
+                                    <div className="bg-[#f1f1f1e3] rounded-b-lg border-b-2 border-x-2 p-5   ">
+                                        <div className=" flex flex-row justify-between">
+                                            <div className="pt-5">
+                                                <p>{recipe.yield} Servings</p>
+                                                <p ><span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Math.floor(recipe.totalNutrients.ENERC_KCAL.quantity / recipe.yield)}</span> kcal</p>
+                                            </div>
+                                            <div className="text-gray-900 dark:text-white bg-yellow">{recipe.digest
+                                                .filter(digestlabel => ["Fat", "Protein", "Carbs"].includes(digestlabel.label))
+                                                .map((digestlabel, index) => (
+                                                    <li key={index} className="leading-10"  >{digestlabel.label.toUpperCase()}: <b>{Math.floor(digestlabel.total)}{digestlabel.unit}</b></li>
+                                                ))}</div>
+                                            <div>{recipe.digest
+                                                .filter(digestlabel => ["Cholesterol", "Sodium", "Calcium", "Magnesium", "Potassium", "Iron"].includes(digestlabel.label))
+                                                .map((digestlabel, index) => (
+                                                    <li key={index}  >{digestlabel.label}: <b>{Math.floor(digestlabel.total / recipe.yield)}{digestlabel.unit}</b></li>
+                                                ))}</div>
                                         </div>
-                                        <div className="text-gray-900 dark:text-white bg-yellow">{recipe.digest
-                                            .filter(digestlabel => ["Fat", "Protein", "Carbs"].includes(digestlabel.label))
-                                            .map((digestlabel, index) => (
-                                                <li key={index} className="leading-10"  >{digestlabel.label.toUpperCase()}: <b>{Math.floor(digestlabel.total)}{digestlabel.unit}</b></li>
-                                            ))}</div>
-                                        <div>{recipe.digest
-                                            .filter(digestlabel => ["Cholesterol", "Sodium", "Calcium", "Magnesium", "Potassium", "Iron"].includes(digestlabel.label))
-                                            .map((digestlabel, index) => (
-                                                <li key={index}  >{digestlabel.label}: <b>{Math.floor(digestlabel.total / recipe.yield)}{digestlabel.unit}</b></li>
-                                            ))}</div>
+                                        <div className="flex flex-row justify-center gap-5">
+                                            <Button label="2" onClick={() => setOpenIngredients(true)}>Ingredients</Button>
+                                            {openIngredients &&
+                                                createPortal(
+                                                    <Modal
+                                                    >
+                                                        <Ingredients ingredient={recipe.ingredientLines} onClose={() => setOpenIngredients(false)} />
+                                                    </Modal>,
+                                                    document.body
+                                                )}
+                                            <Button label="2">Add</Button>
+                                        </div>
+
                                     </div>
-                                </div>
+
+                                </div >
+
                             </>
                         );
                     })
@@ -70,7 +93,7 @@ const Addmeal = () => {
                 }
 
             </div>
-        </div>
+        </div >
     )
 }
 
