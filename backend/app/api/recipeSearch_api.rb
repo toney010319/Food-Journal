@@ -1,9 +1,22 @@
 require 'httparty'
 require 'dotenv/load'
 
+class CustomQueryStringNormalizer
+  def self.call(query)
+    query.map do |key, value|
+      if value.is_a?(Array)
+        value.map { |v| "#{key}=#{v}" }.join('&')
+      else
+        "#{key}=#{value}"
+      end
+    end.join('&')
+  end
+end
+
 class RecipeSearchApi
   include HTTParty
   base_uri 'https://api.edamam.com/api/recipes/v2'
+  query_string_normalizer CustomQueryStringNormalizer
 
   def initialize(query: nil, uri: nil)
     @query = query
@@ -34,10 +47,9 @@ class RecipeSearchApi
       uri: @uri,
       app_id: '6db53d7f',
       app_key: 'd3478e085a126d32037e0437a6897813',
-      field: ["label","ingredientLines","image"],
+      field: ["label","ingredientLines","image","healthLabels","dietLabels","digest","yield","totalNutrients"],
        
     }
-
     response = self.class.get("#{self.class.base_uri}/by-uri?", query: request_params)
     puts "response: #{response}"
     parse_response(response)
