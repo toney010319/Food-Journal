@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Homepage from "./pages/Homepage";
 import Journal from "./pages/Journal";
 import Addmeal from "./components/Addmeal";
+import RecipeSearch from "./pages/Recipesearch";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function AppContent() {
               <Route path="/" element={<Homepage />} />
               <Route path="/journal" element={<Journal />} />
               <Route path="/addmeal" element={<Addmeal />} />
+              <Route path="/recipesearch" element={<RecipeSearch />} />
             </Route>
           </Routes>
         </div>

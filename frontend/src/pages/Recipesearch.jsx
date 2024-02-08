@@ -7,10 +7,11 @@ const RecipeSearch = () => {
   const [query, setQuery] = useState('');
   const [recipes, setRecipes] = useState([]);
 
-  const handleSearch = async () => {
+  const handleSearch = async (event) => {
+    event.preventDefault();
     try {
-      const response = await axios.get(`/api/recipes?query=${query}`);
-      setRecipes(response.data.hits);
+      const response = await axios.get(`http://localhost:3000/api/recipe`, { params: {query} });
+      console.log(response.data.hits, "response");
     } catch (error) {
       console.error('Error fetching recipes:', error);
     }
