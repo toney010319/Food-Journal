@@ -13,6 +13,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Homepage from "./pages/Homepage";
 import Journal from "./pages/Journal";
 import Addmeal from "./components/Addmeal";
+import Navbar from "./components/Navbar";
+import NavbarC from "./components/Navbar";
 
 function App() {
   return (
@@ -53,20 +55,23 @@ function AppContent() {
           <span className="text-xl font-body">{notice}</span>
         </Alert>
       )}
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full space-y-8">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/" element={<Homepage />} /> */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/journal" element={<Journal />} />
-              <Route path="/addmeal" element={<Addmeal />} />
-            </Route>
-          </Routes>
-        </div>
+
+      {/* min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 */}
+      <NavbarC />
+
+      <div className="w-full space-y-8">
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/" element={<Homepage />} /> */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/journal" element={<Journal />} />
+            <Route path="/addmeal" element={<Addmeal />} />
+          </Route>
+        </Routes>
       </div>
+
     </>
   );
 }
