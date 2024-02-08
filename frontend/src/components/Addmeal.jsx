@@ -20,16 +20,17 @@ const Addmeal = () => {
     }, []);
     console.log("recipes", recipes)
     return (
-        <div className=" overflow-scroll w-full   bg-background">
-            <div className="  shadow-md border-md rounded-md flex flex-col justify-center items-center gap-5 bg-background m-2 p-5 ">
+        <div className=" overflow-scroll   bg-background">
+            <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
+            <div className="  shadow-md border-md rounded-md flex flex-row flex-wrap   justify-center items-center gap-5 bg-background m-2 p-5 ">
 
-                <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
+
                 {recipes.length > 0 ? (
                     recipes.map((recipe) => {
                         return (
                             <>
 
-                                <div className="text-align items-align flex flex-col   text-gray-900 dark:text-white">
+                                <div className="text-align items-align flex flex-col  text-gray-900 dark:text-white">
                                     <CardRecipe
                                         key={recipe.id}
                                         label={recipe?.label}
