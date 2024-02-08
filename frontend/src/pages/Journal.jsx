@@ -4,7 +4,9 @@
 // import { createPortal } from 'react-dom';
 import { Link } from "react-router-dom";
 import AccordionC from "../components/Accordion";
+import { useState } from "react";
 const Journal = () => {
+    const [mealtype, setMealtype] = useState('')
 
     return (
         <>
