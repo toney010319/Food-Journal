@@ -7,6 +7,7 @@ class CreateJournals < ActiveRecord::Migration[7.1]
         t.string :image
         t.jsonb :digestlabel, array:true, default: []
         t.string :healthlabel,array: true, default: []
+        t.string :dietlabel,array: true, default: []
         t.string :yield
         t.references :user, null: false, foreign_key: true
         t.timestamps

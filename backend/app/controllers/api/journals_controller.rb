@@ -16,7 +16,7 @@ class JournalsController < ApplicationController
   private
   
     def journal_params
-      params.permit(:image,:label, :yield,  :mealtype, :user_id, digestlabel: [:total, :label], healthlabel: [], ingredientlines: [])
+      params.permit(:image,:label, :yield,  :mealtype, :user_id, dietlabel:[], digestlabel: [:total, :label], healthlabel: [], ingredientlines: [])
     end
 
     private
