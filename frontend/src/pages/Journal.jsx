@@ -3,16 +3,19 @@
 // import Modal from "../Modal";
 // import { createPortal } from 'react-dom';
 import { Link } from "react-router-dom";
+import AccordionC from "../components/Accordion";
+import { useState } from "react";
 const Journal = () => {
+    const [mealtype, setMealtype] = useState('')
 
     return (
         <>
-            <div className="border-2 border-black">
+            <div className=" pt-10  bg-background w-full h-full">
 
-                <div className="grid grid-cols-3 grid-rows-1 gap-4 border-2 border-black">
-                    <div >Meal 1</div>
-                    <div >Meal 2</div>
-                    <div >Meal 3</div>
+                <div className="grid grid-cols-3 grid-rows-1 gap-10  m-5 ">
+                    <div ><h1>Breakfast</h1><AccordionC /></div>
+                    <div ><h1>Lunch</h1><AccordionC /></div>
+                    <div ><h1>Dinner</h1><AccordionC /></div>
                 </div>
                 <Link to="/addmeal"
                     className="cursor-pointer text-white px-2 py-1 bg-gray-700 rounded-md hover:bg-gray-950 mb-2 ml-3"

@@ -32,7 +32,10 @@ module Api
                 render json: {error: result[:error]}, status: :bad_request
             else
                 recipe_data = result['hits'][0]['recipe']
+                recipe_record = Recipe.find_by(uri: uri)
+                database_recipe_id = recipe_record&.id 
                 filtered_data = {
+                    id: database_recipe_id,
                     ingredientLines: recipe_data['ingredientLines'],
                     label: recipe_data['label'],
                     image: recipe_data['image'],
@@ -40,7 +43,8 @@ module Api
                     dietLabels: recipe_data['dietLabels'],
                     digest: recipe_data['digest'],
                     yield: recipe_data['yield'],
-                    totalNutrients: recipe_data['totalNutrients']
+                    totalNutrients: recipe_data['totalNutrients'],
+                     
                                 }
                  render json: filtered_data
             end

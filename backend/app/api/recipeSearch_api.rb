@@ -51,15 +51,17 @@ class RecipeSearchApi
        
     }
     response = self.class.get("#{self.class.base_uri}/by-uri?", query: request_params)
-    puts "response: #{response}"
-    parse_response(response)
+    
+    parse_response(response, @uri)
   end
 
   private
 
-  def parse_response(response)
+  def parse_response(response,uri = nil)
     if response.success?
-      JSON.parse(response.body)
+      body = JSON.parse(response.body)
+      body['uri'] = uri if uri
+      body
     else
       puts "fullerrorresponse: #{response.body}"
       { error: "API request failed with status code #{response.code}" }

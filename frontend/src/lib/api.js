@@ -12,3 +12,12 @@ export const getSaveRecipes = async (userId) => {
     }
 }
 
+
+export const PostJournalEntry = async (user_id, entry) => {
+    try {
+        const response = await axios.post(`http://127.0.0.1:3000/api/users/${user_id}/journals`, entry);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
