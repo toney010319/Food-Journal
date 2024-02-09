@@ -12,9 +12,8 @@ import Nutrients from "./Micronutrients";
 const Addmeal = () => {
     const [recipes, setRecipes] = useState([])
     const [openIngredients, setOpenIngredients] = useState(false)
-
     const user_id = JSON.parse(sessionStorage.getItem("user")).id
-
+    const [first, setfirst] = useState([])
 
     const fetchSaveRecipes = async () => {
         let saveRecipes = await getSaveRecipes(user_id);
@@ -22,8 +21,40 @@ const Addmeal = () => {
     }
     useEffect(() => {
         fetchSaveRecipes();
+
     }, []);
-    console.log("recipes", recipes)
+    console.log(recipes, "recipes")
+    const handleAddButtonClick = async (id) => {
+        try {
+            console.log("id ", id);
+            let chosenMeal = recipes.find((recipe) => recipe.id === id);
+
+            let entry = {
+                label: chosenMeal.label,
+                yield: chosenMeal.yield,
+                image: chosenMeal.image,
+                mealtype: "breakfast",
+                ingredientlines: [...chosenMeal.ingredientLines],
+                digestlabel: [...chosenMeal.digest],
+                healthlabel: [...chosenMeal.healthLabels],
+                dietlabel: [...chosenMeal.dietLabels]
+
+            };
+            console.log("chosenMeal", chosenMeal)
+
+
+            let response = await PostJournalEntry(user_id, entry);
+            console.log(response, "response");
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+    const handleIngredientButton = (id) => {
+        let choosenMeal = recipes.find((recipe) => recipe.id === id);
+        setfirst([...choosenMeal.ingredientLines])
+    }
+
+
     return (
         <div className=" overflow-scroll   bg-background">
             <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
@@ -52,16 +83,16 @@ const Addmeal = () => {
 
                                         <Nutrients recipe={recipe} />
                                         <div className="flex flex-row justify-center gap-5">
-                                            <Button label="2" onClick={() => setOpenIngredients(true)}>Ingredients</Button>
+                                            <Button label="2" onClick={() => { setOpenIngredients(true), handleIngredientButton(recipe.id) }}>Ingredients</Button>
                                             {openIngredients &&
                                                 createPortal(
                                                     <Modal
                                                     >
-                                                        <Ingredients ingredient={recipe.ingredientLines} onClose={() => setOpenIngredients(false)} />
+                                                        <Ingredients ingredient={first} onClose={() => setOpenIngredients(false)} />
                                                     </Modal>,
                                                     document.body
                                                 )}
-                                            <Button label="2" >Add</Button>
+                                            <Button label="2" onClick={() => handleAddButtonClick(recipe.id)}>Add</Button>
                                         </div>
 
                                     </div>
