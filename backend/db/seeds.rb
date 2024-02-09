@@ -31,29 +31,46 @@ User.create(
 )
 
 
-Recipe.create(
-  user_id: 2,
-  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_b79327d05b8e5b838ad6cfd9576b30b6",
+
+ 
+  Recipe.create(
+    user_id: 2,
+    uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_cf665dda5068a07d26ccfda829588474",
   )
-
-
-Recipe.create(
-  user_id: 1,
-  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8275bb28647abcedef0baaf2dcf34f8b",
-)
-Recipe.create(
+  Recipe.create(
+  user_id: 2,
+  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_bccf9937e9c083be501c92457d50f1a3",
+  )
+  Recipe.create(
+  user_id: 2,
+  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_25e09f000a24fe43ad27dc14bbd1cb04",
+  )
+  Recipe.create(
+  user_id: 2,
+  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_2d6b5f79a65af3fa9a5722ebbd9b442a",
+  )
+  Recipe.create(
+  user_id: 2,
+  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8e4738b9d9d8b9c20f6d5f2c5788cdd9",
+  )
+  Recipe.create(
+  user_id: 2,
+  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_6860eeeec08bc9f98774b0808b7c9d56",
+  )
+  Recipe.create(
   user_id: 2,
   uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8275bb28647abcedef0baaf2dcf34f8b",
-)
-Recipe.create(
-  user_id: 2,
-  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8275bb28647abcedef0baaf2dcf34f8b",
-)
-Recipe.create(
-  user_id: 3,
-  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8275bb28647abcedef0baaf2dcf34f8b",
-)
-Recipe.create(
-  user_id: 3,
-  uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8275bb28647abcedef0baaf2dcf34f8b",
-)
+  )
+  Recipe.create(
+    user_id: 2,
+    uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_6860eeeec08bc9f98774b0808b7c9d56",
+    )
+  
+    Recipe.create(
+    user_id: 2,
+    uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_8dd9425e2e8be1a0aac13a41b4b7ed5c",
+     )
+    Recipe.create(
+    user_id: 2,
+    uri: "http://www.edamam.com/ontologies/edamam.owl#recipe_c342e720f679cd098295ccb7baad655b",
+    )
