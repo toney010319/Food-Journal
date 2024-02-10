@@ -40,47 +40,48 @@ const Login = () => {
       setNotice("Login Success!");
       router("/");
     } catch (error) {
-      console.error(error.response.data.error);
       setErrorMessage(error.response.data.error);
       setShowAlert(true);
     }
   };
 
   return (
-    <>
-      <Header
-        heading="Login to your account"
-        paragraph="Don't have an account yet? "
-        linkName="Signup"
-        linkUrl="/signup"
-      />
+    <div className="min-h-full flex items-center justify-center py-24 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <Header
+          heading="Login to your account"
+          paragraph="Don't have an account yet? "
+          linkName="Signup"
+          linkUrl="/signup"
+        />
 
-      {showAlert && (
-        <Alert color="failure" onDismiss={() => setShowAlert(false)}>
-          <span className="font-medium">{errorMessage}</span>
-        </Alert>
-      )}
-      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-        <div className="-space-y-px">
-          {fields.map((field) => (
-            <Input
-              key={field.id}
-              handleChange={handleChange}
-              value={formData[field.id]}
-              labelText={field.labelText}
-              labelFor={field.labelFor}
-              id={field.id}
-              name={field.name}
-              type={field.type}
-              isRequired={field.isRequired}
-              placeholder={field.placeholder}
-            />
-          ))}
-        </div>
+        {showAlert && (
+          <Alert color="failure" onDismiss={() => setShowAlert(false)}>
+            <span className="font-medium">{errorMessage}</span>
+          </Alert>
+        )}
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="-space-y-px">
+            {fields.map((field) => (
+              <Input
+                key={field.id}
+                handleChange={handleChange}
+                value={formData[field.id]}
+                labelText={field.labelText}
+                labelFor={field.labelFor}
+                id={field.id}
+                name={field.name}
+                type={field.type}
+                isRequired={field.isRequired}
+                placeholder={field.placeholder}
+              />
+            ))}
+          </div>
 
-        <FormAction handleSubmit={handleSubmit} text="Login" />
-      </form>
-    </>
+          <FormAction handleSubmit={handleSubmit} text="Login" />
+        </form>
+      </div>
+    </div>
   );
 };
 

@@ -46,40 +46,42 @@ const Signup = () => {
   };
 
   return (
-    <>
-      <Header
-        heading="Create an account"
-        paragraph="Already have an account? "
-        linkName="Login"
-        linkUrl="/login"
-      />
-      {showAlert && (
-        <Alert color="failure" onDismiss={() => setShowAlert(false)}>
-          {errorMessages.map((errorMessage) => (
-            <ul key={errorMessage}>{errorMessage}</ul>
-          ))}
-        </Alert>
-      )}
-      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-        <div className="">
-          {fields.map((field) => (
-            <Input
-              key={field.id}
-              handleChange={handleChange}
-              value={formData[field.id]}
-              labelText={field.labelText}
-              labelFor={field.labelFor}
-              id={field.id}
-              name={field.name}
-              type={field.type}
-              isRequired={field.isRequired}
-              placeholder={field.placeholder}
-            />
-          ))}
-        </div>
-        <FormAction handleSubmit={handleSubmit} text="Register" />
-      </form>
-    </>
+    <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
+        <Header
+          heading="Create an account"
+          paragraph="Already have an account? "
+          linkName="Login"
+          linkUrl="/login"
+        />
+        {showAlert && (
+          <Alert color="failure" onDismiss={() => setShowAlert(false)}>
+            {errorMessages.map((errorMessage) => (
+              <ul key={errorMessage}>{errorMessage}</ul>
+            ))}
+          </Alert>
+        )}
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+          <div className="">
+            {fields.map((field) => (
+              <Input
+                key={field.id}
+                handleChange={handleChange}
+                value={formData[field.id]}
+                labelText={field.labelText}
+                labelFor={field.labelFor}
+                id={field.id}
+                name={field.name}
+                type={field.type}
+                isRequired={field.isRequired}
+                placeholder={field.placeholder}
+              />
+            ))}
+          </div>
+          <FormAction handleSubmit={handleSubmit} text="Register" />
+        </form>
+      </div>
+    </div>
   );
 };
 

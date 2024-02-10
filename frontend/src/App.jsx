@@ -45,7 +45,7 @@ function AppContent() {
   };
 
   return (
-    <>
+    <div className="w-screen min-h-screen bg-[#FFE8A3]">
       {showNotice && (
         <Alert
           color="success"
@@ -56,23 +56,18 @@ function AppContent() {
         </Alert>
       )}
 
-      {/* min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 */}
       <NavbarC />
 
-      <div className="w-full space-y-8">
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/" element={<Homepage />} /> */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/journal" element={<Journal />} />
-            <Route path="/addmeal/:mealtype" element={<Addmeal />} />
-          </Route>
-        </Routes>
-      </div>
-
-    </>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/journal" element={<Journal />} />
+           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
