@@ -22,7 +22,7 @@ const Homepage = () => {
           },
         }
       );
-      console.log(response.data);
+
 
       sessionStorage.clear();
       setShowNotice(true);
