@@ -6,7 +6,7 @@ import { Button } from 'flowbite-react';
 import Ingredients from "./Ingredients";
 import { createPortal } from "react-dom";
 import Modal from "./Modal";
-
+import { useParams } from "react-router-dom";
 import Nutrients from "./Micronutrients";
 
 const Addmeal = () => {
@@ -14,6 +14,7 @@ const Addmeal = () => {
     const [openIngredients, setOpenIngredients] = useState(false)
     const user_id = JSON.parse(sessionStorage.getItem("user")).id
     const [first, setfirst] = useState([])
+    const { mealtype } = useParams();
 
     const fetchSaveRecipes = async () => {
         let saveRecipes = await getSaveRecipes(user_id);
@@ -23,28 +24,28 @@ const Addmeal = () => {
         fetchSaveRecipes();
 
     }, []);
-    console.log(recipes, "recipes")
+    console.log("mealtype", mealtype)
     const handleAddButtonClick = async (id) => {
         try {
-            console.log("id ", id);
+
             let chosenMeal = recipes.find((recipe) => recipe.id === id);
 
             let entry = {
                 label: chosenMeal.label,
                 yield: chosenMeal.yield,
                 image: chosenMeal.image,
-                mealtype: "breakfast",
+                mealtype: mealtype,
                 ingredientlines: [...chosenMeal.ingredientLines],
                 digestlabel: [...chosenMeal.digest],
                 healthlabel: [...chosenMeal.healthLabels],
                 dietlabel: [...chosenMeal.dietLabels]
 
             };
-            console.log("chosenMeal", chosenMeal)
+
 
 
             let response = await PostJournalEntry(user_id, entry);
-            console.log(response, "response");
+
         } catch (error) {
             console.error("Error:", error);
         }
