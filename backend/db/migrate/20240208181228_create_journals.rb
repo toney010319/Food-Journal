@@ -1,7 +1,7 @@
 class CreateJournals < ActiveRecord::Migration[7.1]
   def change
     create_table :journals do |t|
-      
+        t.string :uri
         t.string :label
         t.string :ingredientlines, array: true, default: []
         t.string :image
