@@ -32,7 +32,7 @@ const NavbarC = () => {
                     Home
                 </Navbar.Link>
                 <Navbar.Link href="#">Search</Navbar.Link>
-                <Navbar.Link href="journal">Journal</Navbar.Link>
+                <Navbar.Link href="/journal">Journal</Navbar.Link>
                 <Navbar.Link href="#">Profile</Navbar.Link>
 
             </Navbar.Collapse>
