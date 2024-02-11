@@ -38,7 +38,8 @@ const Addmeal = () => {
                 ingredientlines: [...chosenMeal.ingredientLines],
                 digestlabel: [...chosenMeal.digest],
                 healthlabel: [...chosenMeal.healthLabels],
-                dietlabel: [...chosenMeal.dietLabels]
+                dietlabel: [...chosenMeal.dietLabels],
+                uri: chosenMeal.uri
 
             };
 
