@@ -32,6 +32,7 @@ const Login = () => {
         "http://localhost:3000/api/login",
         formData
       );
+
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("user", JSON.stringify(response.data.user));
       setShowNotice(true);

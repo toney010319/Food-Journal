@@ -9,6 +9,7 @@ const Homepage = () => {
   const { logout } = useAuth();
   const router = useNavigate();
 
+
   return (
     <div className="w-full flex flex-col items-center">
       <div className="w-1/2 p-8 flex flex-col justify-center items-center">

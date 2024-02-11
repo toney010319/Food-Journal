@@ -57,13 +57,14 @@ function AppContent() {
       )}
 
       <NavbarC />
+
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/journal" element={<Journal />} />
-          <Route path="/addmeal" element={<Addmeal />} />
+           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
         </Route>
       </Routes>
     </div>

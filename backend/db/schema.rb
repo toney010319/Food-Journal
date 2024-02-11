@@ -22,6 +22,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_08_181645) do
   end
 
   create_table "journals", force: :cascade do |t|
+    t.string "uri"
     t.string "label"
     t.string "ingredientlines", default: [], array: true
     t.string "image"

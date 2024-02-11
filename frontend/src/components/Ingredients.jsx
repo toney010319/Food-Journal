@@ -2,7 +2,7 @@
 const Ingredients = ({ ingredient, onClose }) => {
 
     return (
-        <div className="bg-[#f1f1f1e3] rounded-b-lg border-b-2 border-x-2 p-5   ">
+        <div className="bg-white rounded-b-lg border-b-2 border-x-2 p-5   ">
             <button
                 onClick={onClose}
                 className="  absolute top-0 right-0  "
@@ -23,3 +23,5 @@ const Ingredients = ({ ingredient, onClose }) => {
 }
 
 export default Ingredients
+
+

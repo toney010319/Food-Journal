@@ -6,12 +6,12 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const NavbarC = () => {
+
   const { isLoggedIn, logout } = useAuth();
   const { setNotice, setShowNotice } = useStateContext();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const router = useNavigate();
-
   useEffect(() => {
     if (isLoggedIn) {
       const user = JSON.parse(sessionStorage.getItem("user"));
