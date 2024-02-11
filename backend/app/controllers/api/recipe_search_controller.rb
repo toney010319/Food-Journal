@@ -44,6 +44,8 @@ module Api
                     digest: recipe_data['digest'],
                     yield: recipe_data['yield'],
                     totalNutrients: recipe_data['totalNutrients'],
+                    uri: recipe_data['uri'],
+                    calories: recipe_data['calories']
                      
                                 }
                  render json: filtered_data
