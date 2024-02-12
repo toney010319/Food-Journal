@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Button } from 'flowbite-react';
+import CardRecipe from '../components/CardRecipe';
+import Nutrients from '../components/Micronutrients';
 
 const RecipeSearch = () => {
   const [query, setQuery] = useState('');
@@ -34,10 +37,19 @@ const RecipeSearch = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
       <div>
-        {recipes.map((recipe, index) => (
+        {recipes.map((recipe, index) => (  
           <div key={index}>
-            <h3>{recipe.label}</h3>
-            <img src={recipe.image} alt={recipe.label} style={{ maxWidth: '200px' }} />
+            <div className="text-align   items-align flex flex-col  text-gray-900  ">
+                                    <CardRecipe
+
+                                        key={recipe.id}
+                                        label={recipe?.label}
+                                        image={recipe.image}                                      
+                                    />
+                                    <div className="bg-[#f1f1f1e3] rounded-b-lg border-b-2 border-x-2 p-5   ">
+                                      <Nutrients recipe={recipe} />    
+                                    </div>
+            </div>                                                     
           </div>
         ))}
       </div>
