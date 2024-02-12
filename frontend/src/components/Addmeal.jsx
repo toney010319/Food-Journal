@@ -1,36 +1,76 @@
 import { useEffect, useState } from "react";
-import { getSaveRecipes } from "../lib/api"
+import { PostJournalEntry, getSaveRecipes } from "../lib/api"
 import Loading from "./Loading";
 import CardRecipe from "./CardRecipe";
 import { Button } from 'flowbite-react';
 import Ingredients from "./Ingredients";
 import { createPortal } from "react-dom";
 import Modal from "./Modal";
+import { useParams } from "react-router-dom";
+import Nutrients from "./Micronutrients";
 
 const Addmeal = () => {
     const [recipes, setRecipes] = useState([])
     const [openIngredients, setOpenIngredients] = useState(false)
     const user_id = JSON.parse(sessionStorage.getItem("user")).id
+    const [first, setfirst] = useState([])
+    const { mealtype } = useParams();
+
     const fetchSaveRecipes = async () => {
         let saveRecipes = await getSaveRecipes(user_id);
         setRecipes(saveRecipes)
     }
     useEffect(() => {
         fetchSaveRecipes();
-    }, []);
-    console.log("recipes", recipes)
-    return (
-        <div className=" overflow-scroll w-full   bg-background">
-            <div className="  shadow-md border-md rounded-md flex flex-col justify-center items-center gap-5 bg-background m-2 p-5 ">
 
-                <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
+    }, []);
+    console.log("mealtype", mealtype)
+    const handleAddButtonClick = async (id) => {
+        try {
+
+            let chosenMeal = recipes.find((recipe) => recipe.id === id);
+
+            let entry = {
+                label: chosenMeal.label,
+                yield: chosenMeal.yield,
+                image: chosenMeal.image,
+                mealtype: mealtype,
+                ingredientlines: [...chosenMeal.ingredientLines],
+                digestlabel: [...chosenMeal.digest],
+                healthlabel: [...chosenMeal.healthLabels],
+                dietlabel: [...chosenMeal.dietLabels],
+                uri: chosenMeal.uri
+
+            };
+
+
+
+            let response = await PostJournalEntry(user_id, entry);
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+    const handleIngredientButton = (id) => {
+        let choosenMeal = recipes.find((recipe) => recipe.id === id);
+        setfirst([...choosenMeal.ingredientLines])
+    }
+
+
+    return (
+        <div className=" overflow-scroll   bg-background">
+            <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
+            <div className="  shadow-md border-md rounded-md flex flex-row flex-wrap   justify-center items-center gap-5 bg-background m-2 p-5 ">
+
+
                 {recipes.length > 0 ? (
                     recipes.map((recipe) => {
                         return (
                             <>
 
-                                <div className="text-align items-align flex flex-col   text-gray-900 dark:text-white">
+                                <div className="text-align items-align flex flex-col  text-gray-900 dark:text-white">
                                     <CardRecipe
+
                                         key={recipe.id}
                                         label={recipe?.label}
                                         image={recipe.image}
@@ -39,45 +79,22 @@ const Addmeal = () => {
                                             <li key={index} className="float-left w-auto pr-5 ">{healthlabel}</li>
                                         ))
                                         ]}
-                                        digest={recipe.digest
-                                            .filter(digestlabel => ["Fat", "Protein", "Carbs"].includes(digestlabel.label))
-                                            .map((digestlabel, index) => (
-                                                <li key={index}  >{digestlabel.label}: {Math.floor(digestlabel.total)}{digestlabel.unit}</li>
-                                            ))}
-                                        ingredients={[
-                                            recipe?.ingredientLines.map((ingredient, index) => (
-                                                <li key={index} className="text-left ">{ingredient}</li>
-                                            ))
-                                        ]}
+
                                     />
                                     <div className="bg-[#f1f1f1e3] rounded-b-lg border-b-2 border-x-2 p-5   ">
-                                        <div className=" flex flex-row justify-between">
-                                            <div className="pt-5">
-                                                <p>{recipe.yield} Servings</p>
-                                                <p ><span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{Math.floor(recipe.totalNutrients.ENERC_KCAL.quantity / recipe.yield)}</span> kcal</p>
-                                            </div>
-                                            <div className="text-gray-900 dark:text-white bg-yellow">{recipe.digest
-                                                .filter(digestlabel => ["Fat", "Protein", "Carbs"].includes(digestlabel.label))
-                                                .map((digestlabel, index) => (
-                                                    <li key={index} className="leading-10"  >{digestlabel.label.toUpperCase()}: <b>{Math.floor(digestlabel.total)}{digestlabel.unit}</b></li>
-                                                ))}</div>
-                                            <div>{recipe.digest
-                                                .filter(digestlabel => ["Cholesterol", "Sodium", "Calcium", "Magnesium", "Potassium", "Iron"].includes(digestlabel.label))
-                                                .map((digestlabel, index) => (
-                                                    <li key={index}  >{digestlabel.label}: <b>{Math.floor(digestlabel.total / recipe.yield)}{digestlabel.unit}</b></li>
-                                                ))}</div>
-                                        </div>
+
+                                        <Nutrients recipe={recipe} />
                                         <div className="flex flex-row justify-center gap-5">
-                                            <Button label="2" onClick={() => setOpenIngredients(true)}>Ingredients</Button>
+                                            <Button label="2" onClick={() => { setOpenIngredients(true), handleIngredientButton(recipe.id) }}>Ingredients</Button>
                                             {openIngredients &&
                                                 createPortal(
                                                     <Modal
                                                     >
-                                                        <Ingredients ingredient={recipe.ingredientLines} onClose={() => setOpenIngredients(false)} />
+                                                        <Ingredients ingredient={first} onClose={() => setOpenIngredients(false)} />
                                                     </Modal>,
                                                     document.body
                                                 )}
-                                            <Button label="2">Add</Button>
+                                            <Button label="2" onClick={() => handleAddButtonClick(recipe.id)}>Add</Button>
                                         </div>
 
                                     </div>

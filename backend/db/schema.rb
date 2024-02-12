@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_02_220210) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_08_181645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,12 +21,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_220210) do
     t.index ["token"], name: "index_authorized_tokens_on_token"
   end
 
-  create_table "recipes", force: :cascade do |t|
+  create_table "journals", force: :cascade do |t|
     t.string "uri"
+    t.string "label"
+    t.string "ingredientlines", default: [], array: true
+    t.string "image"
+    t.jsonb "digestlabel", default: [], array: true
+    t.string "healthlabel", default: [], array: true
+    t.string "dietlabel", default: [], array: true
+    t.string "yield"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_recipes_on_user_id"
+    t.string "mealtype"
+    t.index ["user_id"], name: "index_journals_on_user_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "label"
+    t.text "ingredientsLines", default: [], array: true
+    t.text "images", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -39,5 +55,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_02_220210) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "recipes", "users"
+  add_foreign_key "journals", "users"
 end

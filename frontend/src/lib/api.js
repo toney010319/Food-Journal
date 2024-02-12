@@ -12,3 +12,34 @@ export const getSaveRecipes = async (userId) => {
     }
 }
 
+
+export const PostJournalEntry = async (userId, entry) => {
+    try {
+        const response = await axios.post(`http://127.0.0.1:3000/api/users/${userId}/journals`, entry);
+        console.log(response.data, "response.data")
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+export const getJournalEntries = async (userId) => {
+    try {
+        const response =  await axios.get(`http://localhost:3000/api/users/${userId}/journals`)
+        console.log(response.data, "response.data")
+        return response.data
+
+    } catch (error) {
+         console.error(error);
+    }
+}
+    
+export const getRecipeByUri = async (uri) => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:3000/api/recipebyuri`, { params: { uri } });
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}

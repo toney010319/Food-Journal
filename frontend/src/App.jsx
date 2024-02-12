@@ -14,6 +14,8 @@ import Homepage from "./pages/Homepage";
 import Journal from "./pages/Journal";
 import Addmeal from "./components/Addmeal";
 import RecipeSearch from "./pages/Recipesearch";
+import Navbar from "./components/Navbar";
+import NavbarC from "./components/Navbar";
 
 function App() {
   return (
@@ -44,7 +46,7 @@ function AppContent() {
   };
 
   return (
-    <>
+    <div className="w-screen min-h-screen bg-[#FFE8A3]">
       {showNotice && (
         <Alert
           color="success"
@@ -54,22 +56,19 @@ function AppContent() {
           <span className="text-xl font-body">{notice}</span>
         </Alert>
       )}
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full space-y-8">
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            {/* <Route path="/" element={<Homepage />} /> */}
-            <Route element={<ProtectedRoute />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/journal" element={<Journal />} />
-              <Route path="/addmeal" element={<Addmeal />} />
-              <Route path="/recipesearch" element={<RecipeSearch />} />
-            </Route>
-          </Routes>
-        </div>
-      </div>
-    </>
+
+      <NavbarC />
+
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/journal" element={<Journal />} />
+           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

@@ -5,12 +5,12 @@ function CardRecipe(props) {
 
   return (
     <>
-      <Card className="max-w-sm rounded-b-none border-b-0" imgSrc={image} horizontal>
-        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+      <Card imgSrc={image} horizontal className=' max-h-96 truncate'>
+        <h5 >
           {label}
         </h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">
-          <p>{dietLabels}</p>
+        <p >
+          <p className='max-h-96 overflow-truncate   '>{dietLabels}</p>
           {healthLabels}
         </p>
 
