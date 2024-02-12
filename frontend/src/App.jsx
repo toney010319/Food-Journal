@@ -13,6 +13,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Homepage from "./pages/Homepage";
 import Journal from "./pages/Journal";
 import Addmeal from "./components/Addmeal";
+import RecipeSearch from "./pages/Recipesearch";
 import Navbar from "./components/Navbar";
 import NavbarC from "./components/Navbar";
 
@@ -63,6 +64,7 @@ function AppContent() {
         <Route path="/signup" element={<Signup />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/" element={<Homepage />} />
+          <Route path="/recipesearch" element={<RecipeSearch />} />
           <Route path="/journal" element={<Journal />} />
            <Route path="/addmeal/:mealtype" element={<Addmeal />} />
         </Route>
