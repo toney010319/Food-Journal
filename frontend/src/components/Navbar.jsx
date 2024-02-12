@@ -105,7 +105,7 @@ const NavbarC = () => {
           <Navbar.Link className="font-body text-xl" href="#">
             Search
           </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="journal">
+          <Navbar.Link className="font-body text-xl" href="/journal">
             Journal
           </Navbar.Link>
           <Navbar.Link className="font-body text-xl" href="#">
