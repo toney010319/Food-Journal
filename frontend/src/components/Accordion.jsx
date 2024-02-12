@@ -20,7 +20,7 @@ const AccordionC = ({ entries }) => {
             let choosenUri = entries.find((uri) => uri.id === id)
             let uri = choosenUri.uri
             let response = await getRecipeByUri(uri);
-            console.log(response, "response")
+
             setData(response)
             setOpenMore(true)
 
@@ -30,7 +30,7 @@ const AccordionC = ({ entries }) => {
 
     }
 
-    console.log(openMore, "openMore")
+
 
     return (
         <Accordion collapseAll  >

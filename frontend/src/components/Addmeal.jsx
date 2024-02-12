@@ -24,7 +24,7 @@ const Addmeal = () => {
         fetchSaveRecipes();
 
     }, []);
-    console.log("mealtype", mealtype)
+
     const handleAddButtonClick = async (id) => {
         try {
 
@@ -45,7 +45,7 @@ const Addmeal = () => {
 
 
 
-            let response = await PostJournalEntry(user_id, entry);
+            await PostJournalEntry(user_id, entry);
 
         } catch (error) {
             console.error("Error:", error);
