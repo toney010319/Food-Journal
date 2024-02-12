@@ -5,12 +5,12 @@ function CardRecipe(props) {
 
   return (
     <>
-      <Card imgSrc={image} horizontal className=' max-h-96 truncate'>
+      <Card imgSrc={image} horizontal className=' flex min-h-[25rem] max-h-[25rem] item-stretch justify-around  '>
         <h5 >
           {label}
         </h5>
         <p >
-          <p className='max-h-96 overflow-truncate   '>{dietLabels}</p>
+          <p className='    '>{dietLabels}</p>
           {healthLabels}
         </p>
 

@@ -60,7 +60,7 @@ const Addmeal = () => {
     return (
         <div className=" overflow-scroll   bg-background">
             <h1 className="text-3xl font-bold text-center ">Choose Meal</h1>
-            <div className="  shadow-md border-md rounded-md flex flex-row flex-wrap   justify-center items-center gap-5 bg-background m-2 p-5 ">
+            <div className="   shadow-md border-md rounded-md flex flex-row flex-wrap   justify-center items-center gap-5 bg-background m-2 p-5 ">
 
 
                 {recipes.length > 0 ? (
@@ -68,7 +68,7 @@ const Addmeal = () => {
                         return (
                             <>
 
-                                <div className="text-align items-align flex flex-col  text-gray-900 dark:text-white">
+                                <div className="text-align   items-align flex flex-col  text-gray-900  ">
                                     <CardRecipe
 
                                         key={recipe.id}
@@ -76,7 +76,7 @@ const Addmeal = () => {
                                         image={recipe.image}
                                         dietLabels={recipe.dietLabels}
                                         healthLabels={[recipe.healthLabels.map((healthlabel, index) => (
-                                            <li key={index} className="float-left w-auto pr-5 ">{healthlabel}</li>
+                                            <li key={index} className="float-left w-auto pr-5  ">{healthlabel}</li>
                                         ))
                                         ]}
 
