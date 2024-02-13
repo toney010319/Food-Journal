@@ -18,6 +18,7 @@ const Addmeal = () => {
 
     const fetchSaveRecipes = async () => {
         let saveRecipes = await getSaveRecipes(user_id);
+        console.log(saveRecipes, "saveRecipes")
         setRecipes(saveRecipes)
     }
     useEffect(() => {

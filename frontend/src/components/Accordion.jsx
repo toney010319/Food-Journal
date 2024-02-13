@@ -14,7 +14,7 @@ const AccordionC = ({ entries }) => {
     if (!entries) {
         return null;
     }
-
+    console.log(entries, "entries")
     const handleMoreButton = async (id) => {
         try {
             let choosenUri = entries.find((uri) => uri.id === id)

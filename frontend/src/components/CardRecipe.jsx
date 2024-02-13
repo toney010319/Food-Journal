@@ -6,7 +6,7 @@ function CardRecipe(props) {
   return (
     <>
       <Card imgSrc={image} horizontal className=' flex min-h-[25rem] max-h-[25rem] item-stretch justify-around  '>
-        <h5 >
+        <h5 className='font-bold text-2xl' >
           {label}
         </h5>
         <p >
