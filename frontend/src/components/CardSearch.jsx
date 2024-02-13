@@ -29,7 +29,9 @@ const CardSearch = ({ recipes }) => {
         try {
             let choosenMeal = recipes.find((recipe) => recipe.recipe.label === label)
             console.log(choosenMeal, "choosen")
-            let uri = choosenMeal.recipe.uri
+            let uri = {
+                "uri": `${choosenMeal.recipe.uri}`,
+            }
             console.log(uri, "uri")
             let response = await postSaveRecipe(user_id, uri);
 
