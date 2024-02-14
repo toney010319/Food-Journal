@@ -15,7 +15,7 @@ const Journal = () => {
     useEffect(() => {
         fetchJournalEntries();
     }, []);
-    console.log(journalEntries, "entries")
+
     return (
         <>
             <div className=" pl-20 pt-2  bg-[#ffebaf] w-screen h-screen">

@@ -31,7 +31,7 @@ module Api
     
         private
         def recipe_params
-            params.permit(:uri)
+            params.permit(:uri,:user_id)
         end
     end
 end

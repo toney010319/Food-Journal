@@ -5,8 +5,7 @@ const MealtypeGroup = ({ mealType, journalEntries }) => {
     const handleAddButton = () => {
         navigate(`/addmeal/${mealType}`)
     }
-    console.log(`Journal======ENtries${mealType} `, journalEntries[mealType])
-    console.log("mealType", mealType)
+    console.log(journalEntries, "journalEntries")
     return (
         <>
 
