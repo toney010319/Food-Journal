@@ -5,7 +5,8 @@ module Api
       if user && user.authenticate(params[:password])
         token = encode_token({user_id: user.id, current_time: Time.now.to_i})
         AuthorizedToken.create(token: token)
-        render json: { user: user, token: token }
+        render json: { user: { id: user.id, username: user.username, first_name: user.first_name, last_name: user.last_name, email: user.email }, token: token }
+
       else
         render json: { error: 'Invalid username or password' }, status: :unauthorized
       end

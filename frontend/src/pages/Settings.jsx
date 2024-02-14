@@ -13,12 +13,20 @@ let fieldsState = {};
 
 fields.forEach((field) => (fieldsState[field.id] = ""));
 
-const Signup = () => {
+const Settings = () => {
   const { setShowNotice, setNotice } = useStateContext();
   const [formData, setFormData] = useState(fieldsState);
   const router = useNavigate();
   const [errorMessages, setErrorMessages] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+
+  useState(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    Object.keys(user).forEach((key) => (fieldsState[key] = user[key]));
+
+    fields[4].isRequired = false;
+    fields[5].isRequired = false;
+  });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -32,28 +40,26 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/api/signup", {
-        user: formData,
-      });
+      const { id, ...data } = formData;
+      const response = await axios.patch(
+        `http://localhost:3000/api/update/${id}`,
+        { user: data }
+      );
+
       setShowNotice(true);
-      setNotice("Account Successfully Created!");
-      router("/login");
+      setNotice("Account Successfully Updated!");
+      router("/profile");
     } catch (error) {
       console.error(error.response);
       setErrorMessages(error.response.data.errors);
       setShowAlert(true);
     }
+    console.log(formData);
   };
 
   return (
     <div className="h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
-        <Header
-          heading="Create an account"
-          paragraph="Already have an account? "
-          linkName="Login"
-          linkUrl="/login"
-        />
         {showAlert && (
           <Alert color="failure" onDismiss={() => setShowAlert(false)}>
             {errorMessages.map((errorMessage) => (
@@ -78,11 +84,11 @@ const Signup = () => {
               />
             ))}
           </div>
-          <FormAction handleSubmit={handleSubmit} text="Register" />
+          <FormAction handleSubmit={handleSubmit} text="Save" />
         </form>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default Settings;
