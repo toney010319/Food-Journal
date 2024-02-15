@@ -16,6 +16,7 @@ import Addmeal from "./components/Addmeal";
 import RecipeSearch from "./pages/Recipesearch";
 import Navbar from "./components/Navbar";
 import NavbarC from "./components/Navbar";
+import ProfilePage from "./pages/Profile";
 
 function App() {
   return (
@@ -66,9 +67,12 @@ function AppContent() {
           <Route path="/" element={<Homepage />} />
           <Route path="/recipesearch" element={<RecipeSearch />} />
           <Route path="/journal" element={<Journal />} />
-           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
+          <Route path="/addmeal/:mealtype" element={<Addmeal />} />
+          <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Routes>
+
+      <Footer />
     </div>
   );
 }

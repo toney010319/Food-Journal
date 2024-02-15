@@ -8,11 +8,16 @@ module Api
         render json: { errors: user.errors.full_messages }, status: :unprocessable_entity
       end
     end
+    
+    def show
+      user = User.find(params[:id])
+      render json: user
+    end
 
     private
 
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confrimation, :first_name, :last_name)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :first_name, :last_name)
     end
   end
 end
