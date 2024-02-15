@@ -34,7 +34,7 @@ const Homepage = () => {
 
   return (
     <div className="w-full h-full flex px-2 flex-col items-center justify-around">
-      <div className="w-full h-3/5 flex justify-between items-center">
+      <div className="w-full h-1/2 flex justify-between items-center">
         <div className="w-1/2 h-full p-2 bg-white ">
           <h1 className="w-full text-center font-bold text-2xl font-heading">
             Nutritional Report for the Last 7 Days
@@ -87,13 +87,33 @@ const Homepage = () => {
           )}
         </div>
       </div>
-      <div className="w-full h-2/6 p-2 flex justify-between items-center bg-violet-200">
-        <div className="w-1/6 h-full bg-gray-500"></div>
-        <div className="w-1/6 h-full bg-gray-500"></div>
-        <div className="w-1/6 h-full bg-gray-500"></div>
-        <div className="w-1/6 h-full bg-gray-500"></div>
-        <div className="w-1/6 h-full bg-gray-500"></div>
-        <div className="w-10 h-full bg-gray-500"></div>
+      <div className="w-full h-1/2 p-2 flex flex-col justify-around items-center">
+        <div className="w-full h-1/6 text-center font-bold font-heading text-2xl">
+          Recently Saved Recipes
+        </div>
+        <div className="w-full h-5/6 p-4 flex justify-between items-center">
+          {loading ? (
+            <div className="w-full h-full flex items-center justify-center p-3">
+              <Loading />
+            </div>
+          ) : Object.keys(homepageData.recent_recipes).length !== 0 ? (
+            Object.entries(homepageData.recent_recipes || {}).map(
+              ([key, value]) => (
+                <div
+                  key={key}
+                  className="w-1/6 h-full bg-cover"
+                  style={{
+                    backgroundImage: `url(${value})`,
+                  }}
+                ></div>
+              )
+            )
+          ) : (
+            <div className="w-full h-full flex justify-center items-center bg-gray-200 font-bold text-3xl font-heading">
+              No Data Yet
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
