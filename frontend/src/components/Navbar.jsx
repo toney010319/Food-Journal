@@ -6,7 +6,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const NavbarC = () => {
-
   const { isLoggedIn, logout } = useAuth();
   const { setNotice, setShowNotice } = useStateContext();
   const [email, setEmail] = useState("");
@@ -21,6 +20,10 @@ const NavbarC = () => {
     }
   }, []);
 
+  const handleProfileClick = () => router("profile");
+  const handleSettingsClick = () => {
+    router("settings");
+  };
   const handleLogout = async (e) => {
     try {
       const response = await axios.post(
@@ -45,7 +48,7 @@ const NavbarC = () => {
 
   return (
     <>
-      <Navbar fluid rounded className="bg-yellow-300">
+      <Navbar fluid rounded className="top-0 w-full bg-yellow-300">
         <Navbar.Brand href="/">
           <img
             src={Logo}
@@ -56,6 +59,20 @@ const NavbarC = () => {
             NutriPal
           </span>
         </Navbar.Brand>
+        <Navbar.Collapse>
+          <Navbar.Link className="font-body text-xl" href="/">
+            Home
+          </Navbar.Link>
+          <Navbar.Link className="font-body text-xl" href="#">
+            Search
+          </Navbar.Link>
+          <Navbar.Link className="font-body text-xl" href="/journal">
+            Journal
+          </Navbar.Link>
+          <Navbar.Link className="font-body text-xl" href="profile">
+            Profile
+          </Navbar.Link>
+        </Navbar.Collapse>
         <div className="flex md:order-2">
           {isLoggedIn ? (
             <>
@@ -76,9 +93,12 @@ const NavbarC = () => {
                     {email}
                   </span>
                 </Dropdown.Header>
-                <Dropdown.Item>Dashboard</Dropdown.Item>
-                <Dropdown.Item>Settings</Dropdown.Item>
-                <Dropdown.Item>Earnings</Dropdown.Item>
+                <Dropdown.Item onClick={handleProfileClick}>
+                  Profile
+                </Dropdown.Item>
+                <Dropdown.Item onClick={handleSettingsClick}>
+                  Settings
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={handleLogout}>Sign out</Dropdown.Item>
               </Dropdown>
@@ -96,22 +116,6 @@ const NavbarC = () => {
             </>
           )}
         </div>
-      </Navbar>
-      <Navbar fluid rounded className="flex items-center bg-[#CAD456]">
-        <Navbar.Collapse>
-          <Navbar.Link className="font-body text-xl" href="#">
-            Home
-          </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="/recipesearch">
-            Search
-          </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="/journal">
-            Journal
-          </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="/profile">
-            Profile
-          </Navbar.Link>
-        </Navbar.Collapse>
       </Navbar>
     </>
   );

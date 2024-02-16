@@ -16,7 +16,8 @@ import Addmeal from "./components/Addmeal";
 import RecipeSearch from "./pages/Recipesearch";
 import Navbar from "./components/Navbar";
 import NavbarC from "./components/Navbar";
-import ProfilePage from "./pages/Profile";
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function AppContent() {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-[#FFE8A3]">
+    <div className="w-screen h-screen bg-[#FFE8A3] flex flex-col justify-around no-scrollbar">
       {showNotice && (
         <Alert
           color="success"
@@ -68,11 +69,11 @@ function AppContent() {
           <Route path="/recipesearch" element={<RecipeSearch />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
-
-      <Footer />
+      <div className="h-10 w-full bg-[#946746]  inset-x-0 bottom-0"></div>
     </div>
   );
 }

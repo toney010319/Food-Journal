@@ -1,33 +1,40 @@
-import React, { useEffect, useId, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Avatar } from "flowbite-react";
+import { useNavigate } from "react-router-dom";
+import { useStateContext } from "../states/StateContext";
 
-const ProfilePage = () => {
-    const [userDetails, setUserdetails] = useState({})
-    const userId = JSON.parse(sessionStorage.getItem("user")).id
-    const user = async () => {
-        try {
-            const response = await axios.get(`http://localhost:3000/api/users/${userId}`);
-            console.log (response.data, "response.data")
-            setUserdetails(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
+const Profile = () => {
+  const { isEditPage } = useStateContext();
+  const router = useNavigate();
+  const [userData, setUserData] = useState({});
 
-    useEffect(() => {user()}, []);
+  useEffect(() => {
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    setUserData({
+      Username: user.username,
+      "First Name": user.first_name,
+      "Last Name": user.last_name,
+      "Email Address": user.email,
+    });
+  }, []);
 
   return (
-    <div className="profile-page">
-      <div className="profile-header">
-        <img className="profile-picture" alt="Profile" />
-        <h1 className="profile-name"> {userDetails.username} </h1>
-        <ul className="profile-details">
-          <li><strong>Email:</strong> {userDetails.email}</li>
-          <li><strong>Joined:</strong>{userDetails.created_at}</li>
-        </ul>
+    <div className="w-full h-full flex flex-col items-center">
+      <div className="w-1/2 p-8 flex flex-col justify-center items-center">
+        <Avatar rounded size="xl" />
+        <div className="w-full flex flex-col justify-center p-10 bg-white mt-4">
+          {Object.entries(userData).map(([key, value]) => (
+            <div
+              className="my-2 flex flex-col items-center justify-center"
+              key={key}
+            >
+              <span className="font-bold">{key}:</span> {value}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
-export default ProfilePage;
+export default Profile;
