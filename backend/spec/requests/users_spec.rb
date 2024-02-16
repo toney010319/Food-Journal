@@ -52,7 +52,7 @@ RSpec.describe Api::UsersController, type: :request do
         post '/api/signup', params: invalid_params
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to include('application/json')
-        debugger
+        
         expect(JSON.parse(response.body)["errors"]).to include("Username can't be blank", "Email is invalid")
       end
     end
