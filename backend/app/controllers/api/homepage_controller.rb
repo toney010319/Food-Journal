@@ -43,7 +43,7 @@ module Api
             recent_recipes.each do |recipe|
                 search_recipes_api = RecipeSearchApi.new(uri: recipe[:uri])
                 result = search_recipes_api.search_recipes_by_uri
-                urls << result['hits'][0]['recipe']['image']
+                urls << {imgURL: result['hits'][0]['recipe']['image'], uri: recipe[:uri]}
             end
             urls
         end
