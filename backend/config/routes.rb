@@ -18,9 +18,11 @@ Rails.application.routes.draw do
     get 'recipebyuri', to: 'recipe_search#recipe_search_by_uri'
     post 'nutritiondetails', to: 'nutrition_details#nutrition'
     get 'recipe', to: 'recipe_search#recipe_search'
+   
     resources :users do
       resources :recipe
       resources :journals
+      get 'filter_by_date', to: 'journals#filter_by_date'
       
     end
   end
