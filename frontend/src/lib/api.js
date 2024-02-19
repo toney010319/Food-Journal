@@ -63,3 +63,20 @@ export const postSaveRecipe = async (userId, uri) => {
         console.error(error);
     }
 }
+
+
+ 
+
+export const journalFilterDate = async (userId, date) => {
+  try {
+    const response = await axios.get(`http://127.0.0.1:3000/api/users/${userId}/filter_by_date`, {
+      params: {
+        date: date
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error(`HTTP error! status: ${error.response.status}`);
+    throw error;
+  }
+};
