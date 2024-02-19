@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { signupFields } from "../constants/formFields";
 import { Alert } from "flowbite-react";
 import { useStateContext } from "../states/StateContext";
+import { Avatar } from "flowbite-react";
 
 const fields = signupFields;
 let fieldsState = {};
@@ -67,6 +68,7 @@ const Settings = () => {
             ))}
           </Alert>
         )}
+        <Avatar rounded size="xl" />
         <form onSubmit={handleSubmit} className="mt-8 space-y-6">
           <div className="">
             {fields.map((field) => (

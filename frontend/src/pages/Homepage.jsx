@@ -3,12 +3,18 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loading from "../components/Loading";
 import { useStateContext } from "../states/StateContext";
+import { getRecipeByUri } from "../lib/api";
+import { createPortal } from "react-dom";
+import Modal from "../components/Modal";
+import More from "../components/More";
 
 const Homepage = () => {
   const { setShowNotice, setNotice } = useStateContext();
-  const router = useNavigate();
+  // const router = useNavigate();
   const [homepageData, setHomepageData] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalData, setModalData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +29,7 @@ const Homepage = () => {
         console.log(error.response.data.error);
         setHomepageData({}); // Reset homepageData on error
         setLoading(false);
-        // You may want to show an error message to the user
+
         setShowNotice(true);
         setNotice("Failed to fetch homepage data");
       }
@@ -32,8 +38,20 @@ const Homepage = () => {
     fetchData();
   }, [setShowNotice, setNotice]);
 
+  const handleImageClick = async (uri) => {
+    let response = await getRecipeByUri(uri);
+    setModalData(response);
+    setIsModalOpen(true);
+  };
   return (
     <div className="w-full h-full flex px-2 flex-col items-center justify-around">
+      {isModalOpen &&
+        createPortal(
+          <Modal>
+            <More data={modalData} onClose={() => setIsModalOpen(false)} />
+          </Modal>,
+          document.body
+        )}
       <div className="w-full h-1/2 flex justify-between items-center">
         <div className="w-1/2 h-full p-2 bg-white ">
           <h1 className="w-full text-center font-bold text-2xl font-heading">
@@ -87,7 +105,7 @@ const Homepage = () => {
           )}
         </div>
       </div>
-      <div className="w-full h-1/2 p-2 flex flex-col justify-around items-center">
+      <div className="w-full h-1/2 p-8 flex flex-col justify-around items-center">
         <div className="w-full h-1/6 text-center font-bold font-heading text-2xl">
           Recently Saved Recipes
         </div>
@@ -101,10 +119,11 @@ const Homepage = () => {
               ([key, value]) => (
                 <div
                   key={key}
-                  className="w-1/6 h-full bg-cover"
+                  className="w-1/6 h-full bg-cover cursor-pointer"
                   style={{
-                    backgroundImage: `url(${value})`,
+                    backgroundImage: `url(${value.imgURL})`,
                   }}
+                  onClick={() => handleImageClick(value.uri)}
                 ></div>
               )
             )
