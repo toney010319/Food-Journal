@@ -71,6 +71,7 @@ function AppContent() {
           <Route path="/addmeal/:mealtype" element={<Addmeal />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/search" element={<RecipeSearch />} />
         </Route>
       </Routes>
       <div className="h-10 w-full bg-[#946746]  inset-x-0 bottom-0"></div>
