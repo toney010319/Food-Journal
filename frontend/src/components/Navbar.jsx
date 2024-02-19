@@ -63,7 +63,7 @@ const NavbarC = () => {
           <Navbar.Link className="font-body text-xl" href="/">
             Home
           </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="#">
+          <Navbar.Link className="font-body text-xl" href="/search">
             Search
           </Navbar.Link>
           <Navbar.Link className="font-body text-xl" href="/journal">
