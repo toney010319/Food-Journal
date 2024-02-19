@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Avatar } from "flowbite-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useStateContext } from "../states/StateContext";
 
 const Profile = () => {
@@ -31,6 +31,14 @@ const Profile = () => {
               <span className="font-bold">{key}:</span> {value}
             </div>
           ))}
+        </div>
+        <div className="w-full flex justify-center mt-4">
+          <a
+            href="settings"
+            className="font-heading text-xl underline text-blue-500"
+          >
+            Edit Profile
+          </a>
         </div>
       </div>
     </div>
