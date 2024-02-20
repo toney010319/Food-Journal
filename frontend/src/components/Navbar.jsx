@@ -63,7 +63,7 @@ const NavbarC = () => {
           <Navbar.Link className="font-body text-xl" href="/">
             Home
           </Navbar.Link>
-          <Navbar.Link className="font-body text-xl" href="#">
+          <Navbar.Link className="font-body text-xl" href="recipesearch">
             Search
           </Navbar.Link>
           <Navbar.Link className="font-body text-xl" href="/journal">
@@ -79,13 +79,7 @@ const NavbarC = () => {
               <Dropdown
                 arrowIcon={false}
                 inline
-                label={
-                  <Avatar
-                    alt="User settings"
-                    img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                    rounded
-                  />
-                }
+                label={<Avatar alt="User settings" rounded />}
               >
                 <Dropdown.Header>
                   <span className="block text-sm">{name}</span>

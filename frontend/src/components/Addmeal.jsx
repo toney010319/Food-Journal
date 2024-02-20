@@ -8,8 +8,11 @@ import { createPortal } from "react-dom";
 import Modal from "./Modal";
 import { useParams } from "react-router-dom";
 import Nutrients from "./Micronutrients";
+import { useStateContext } from "../states/StateContext";
 
 const Addmeal = () => {
+  const { setShowNotice, setNotice } = useStateContext();
+
   const [recipes, setRecipes] = useState([]);
   const [openIngredients, setOpenIngredients] = useState(false);
   const user_id = JSON.parse(sessionStorage.getItem("user")).id;
@@ -42,6 +45,8 @@ const Addmeal = () => {
       };
 
       await PostJournalEntry(user_id, entry);
+      setShowNotice(true);
+      setNotice(`${entry.label} has been successfully added`);
     } catch (error) {
       console.error("Error:", error);
     }
