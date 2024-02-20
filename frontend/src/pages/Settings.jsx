@@ -55,7 +55,6 @@ const Settings = () => {
       setErrorMessages(error.response.data.errors);
       setShowAlert(true);
     }
-    console.log(formData);
   };
 
   return (

@@ -52,13 +52,15 @@ const Homepage = () => {
           </Modal>,
           document.body
         )}
-      <div className="w-full h-1/2 flex justify-between items-center">
+      <div className="w-full h-1/2 flex justify-between items-center pt-4">
         <div className="w-1/2 h-full p-2 bg-white ">
           <h1 className="w-full text-center font-bold text-2xl font-heading">
             Nutritional Report for the Last 7 Days
           </h1>
           {loading ? (
-            <Loading />
+            <div className="w-full h-full flex items-center justify-center">
+              <Loading />
+            </div>
           ) : (
             <div className="w-full h-5/6 flex justify-between flex-wrap px-10 pt-4 overflow-y-scroll ">
               {Object.keys(homepageData.nutrition_info).length !== 0 ? (
@@ -85,7 +87,9 @@ const Homepage = () => {
             Today's Journal Entries
           </h1>
           {loading ? (
-            <Loading />
+            <div className="w-full h-full flex items-center justify-center">
+              <Loading />
+            </div>
           ) : (
             <div className="w-full h-5/6 flex justify-between flex-wrap px-4 pt-4 overflow-y-scroll ">
               {Object.keys(homepageData.journal_today).length !== 0 ? (
@@ -111,7 +115,7 @@ const Homepage = () => {
         </div>
         <div className="w-full h-5/6 p-4 flex justify-between items-center">
           {loading ? (
-            <div className="w-full h-full flex items-center justify-center p-3">
+            <div className="w-3/4 h-1/4 flex items-center justify-center p-3">
               <Loading />
             </div>
           ) : Object.keys(homepageData.recent_recipes).length !== 0 ? (
