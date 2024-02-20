@@ -91,12 +91,14 @@ const Homepage = () => {
               <Loading />
             </div>
           ) : (
-            <div className="w-full h-5/6 flex justify-between flex-wrap px-4 pt-4 overflow-y-scroll ">
+            <div className="w-full h-5/6 flex justify-around flex-wrap px-4 pt-4 overflow-y-scroll ">
               {Object.keys(homepageData.journal_today).length !== 0 ? (
                 Object.entries(homepageData.journal_today || {}).map(
                   ([key, value]) => (
-                    <div className="my-2 flex w-1/2" key={key}>
-                      <span className="font-bold ml-4">{value}</span>
+                    <div className="my-2 flex w-full" key={key}>
+                      <span className="w-full text-center font-bold ml-4">
+                        {value}
+                      </span>
                     </div>
                   )
                 )
@@ -115,7 +117,7 @@ const Homepage = () => {
         </div>
         <div className="w-full h-5/6 p-4 flex justify-between items-center">
           {loading ? (
-            <div className="w-3/4 h-1/4 flex items-center justify-center p-3">
+            <div className="w-full h-1/2 flex items-center justify-center p-3">
               <Loading />
             </div>
           ) : Object.keys(homepageData.recent_recipes).length !== 0 ? (
