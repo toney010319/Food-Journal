@@ -5,7 +5,7 @@ const MealtypeGroup = ({ mealType, journalEntries }) => {
   const handleAddButton = () => {
     navigate(`/addmeal/${mealType}`);
   };
-  console.log(journalEntries, "journalEntries");
+
   return (
     <>
       <div>
