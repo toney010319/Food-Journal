@@ -25,6 +25,7 @@ const NavbarC = () => {
     router("settings");
   };
   const handleLogout = async (e) => {
+    e.preventdefault()
     try {
       const response = await axios.post(
         "https://food-journal-420c7f2ef7fd.herokuapp.com/api/logout",
