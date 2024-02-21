@@ -21,7 +21,7 @@ const Homepage = () => {
       const user = JSON.parse(sessionStorage.getItem("user"));
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/homepage/${user.id}`
+          `https://food-journal-420c7f2ef7fd.herokuapp.com/api/homepage/${user.id}`
         );
         setHomepageData(response.data);
         setLoading(false);

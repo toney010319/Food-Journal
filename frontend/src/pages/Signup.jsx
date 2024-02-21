@@ -32,7 +32,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post("http://localhost:3000/api/signup", {
+      const response = await axios.post("https://food-journal-420c7f2ef7fd.herokuapp.com/api/signup", {
         user: formData,
       });
       setShowNotice(true);

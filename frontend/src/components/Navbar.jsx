@@ -27,7 +27,7 @@ const NavbarC = () => {
   const handleLogout = async (e) => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/logout",
+        "https://food-journal-420c7f2ef7fd.herokuapp.com/api/logout",
         {},
         {
           headers: {

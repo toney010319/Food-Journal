@@ -3,12 +3,12 @@ import axios from "axios";
 export const getSaveRecipes = async (userId) => {
   try {
     const response = await axios.get(
-      `http://127.0.0.1:3000/api/users/${userId}/recipe`
+      `https://food-journal-420c7f2ef7fd.herokuapp.com/api/users/${userId}/recipe`
     );
     const saveUris = response.data.map((item) => item.uri);
     const recipes = await Promise.all(
       saveUris.map((uri) =>
-        axios.get(`http://127.0.0.1:3000/api/recipebyuri`, { params: { uri } })
+        axios.get(`https://food-journal-420c7f2ef7fd.herokuapp.com/api/recipebyuri`, { params: { uri } })
       )
     );
     return recipes.map((recipeResponse) => recipeResponse.data);
@@ -20,7 +20,7 @@ export const getSaveRecipes = async (userId) => {
 export const PostJournalEntry = async (userId, entry) => {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:3000/api/users/${userId}/journals`,
+      `https://food-journal-420c7f2ef7fd.herokuapp.com/api/users/${userId}/journals`,
       entry
     );
 
@@ -33,7 +33,7 @@ export const PostJournalEntry = async (userId, entry) => {
 export const getJournalEntries = async (userId) => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/users/${userId}/journals`
+      `https://food-journal-420c7f2ef7fd.herokuapp.com/api/users/${userId}/journals`
     );
 
     return response.data;
@@ -44,7 +44,7 @@ export const getJournalEntries = async (userId) => {
 
 export const getRecipeByUri = async (uri) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:3000/api/recipebyuri`, {
+    const response = await axios.get(`https://food-journal-420c7f2ef7fd.herokuapp.com/api/recipebyuri`, {
       params: { uri },
     });
     return response.data;
@@ -55,7 +55,7 @@ export const getRecipeByUri = async (uri) => {
 
 export const searchRecipes = async (query) => {
   try {
-    const response = await axios.get(`http://127.0.0.1:3000/api/recipe`, {
+    const response = await axios.get(`https://food-journal-420c7f2ef7fd.herokuapp.com/api/recipe`, {
       params: { query },
     });
     return response.data;
@@ -67,7 +67,7 @@ export const searchRecipes = async (query) => {
 export const postSaveRecipe = async (userId, uri) => {
   try {
     const response = await axios.post(
-      `http://127.0.0.1:3000/api/users/${userId}/recipe`,
+      `https://food-journal-420c7f2ef7fd.herokuapp.com/api/users/${userId}/recipe`,
       uri
     );
     return response.data;
@@ -79,7 +79,7 @@ export const postSaveRecipe = async (userId, uri) => {
 export const journalFilterDate = async (userId, date) => {
   try {
     const response = await axios.get(
-      `http://127.0.0.1:3000/api/users/${userId}/filter_by_date`,
+      `https://food-journal-420c7f2ef7fd.herokuapp.com/api/users/${userId}/filter_by_date`,
       {
         params: {
           date: date,

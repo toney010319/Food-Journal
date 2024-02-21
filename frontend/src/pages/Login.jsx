@@ -30,7 +30,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/login",
+        "https://food-journal-420c7f2ef7fd.herokuapp.com/api/login",
         formData
       );
 

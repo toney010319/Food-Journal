@@ -43,7 +43,7 @@ const Settings = () => {
     try {
       const { id, ...data } = formData;
       const response = await axios.patch(
-        `http://localhost:3000/api/update/${id}`,
+        `https://food-journal-420c7f2ef7fd.herokuapp.com/api/update/${id}`,
         { user: data }
       );
 
